@@ -5,8 +5,7 @@ const Task = mongoose.model('tasks');
 module.exports = (app) => {
 
   app.get(`/api/task`, async (req, res) => {
-    console.log("epa");
-    let tasks = await Task.find();
+    const tasks = await Task.find({});
     return res.status(200).send(tasks);
   });
 

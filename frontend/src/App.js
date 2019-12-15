@@ -16,7 +16,6 @@ function App() {
 
   const getTasks = async () => {
     let res = await taskService.getAll();
-    console.log(res);
     settasks(res);
   }
 

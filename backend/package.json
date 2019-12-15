@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "npm run start --prefix frontend",
     "server": "nodemon index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run frontend\"",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\"",
     "start": "node index.js"
   },
   "repository": {
@@ -30,4 +30,5 @@
     "concurrently": "^5.0.1",
     "nodemon": "^2.0.2"
   }
+  
 }
