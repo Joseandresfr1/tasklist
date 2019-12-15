@@ -1,7 +1,9 @@
 // /client/src/App.js
 
 import React, { useState, useEffect } from "react";
-
+import 'semantic-ui-css/semantic.min.css'
+import LoginForm from "../src/pages/LoginForm";
+import { Container } from "semantic-ui-react";
 // SERVICES
 import taskService from './services/taskService';
 
@@ -30,6 +32,9 @@ function App() {
 
   return (
     <div className="App">
+      <Container style={{ margin: 20 }}>
+        <LoginForm></LoginForm>
+      </Container>
       <ul className="list">
         {(tasks && tasks.length > 0) ? (
           tasks.map(task => renderProduct(task))
@@ -42,4 +47,3 @@ function App() {
 }
 
 export default App;
-
