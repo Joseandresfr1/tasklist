@@ -2,46 +2,23 @@
 
 import React, { useState, useEffect } from "react";
 import 'semantic-ui-css/semantic.min.css'
-import LoginForm from "../src/pages/LoginForm";
+import LoginForm from "../src/components/forms/LoginForm";
 import { Container } from "semantic-ui-react";
-// SERVICES
-import taskService from './services/taskService';
 
 function App() {
-  const [tasks, settasks] = useState(null);
+  // const [tasks, settasks] = useState(null);
 
-  useEffect(() => {
-    if(!tasks) {
-      getTasks();
-    }
-  })
 
-  const getTasks = async () => {
-    let res = await taskService.getAll();
-    settasks(res);
-  }
+  // useEffect(() => {
 
-  const renderProduct = task => {
-    return (
-      <li key={task._id} className="list__item task">
-        <h3 className="task__name">{task.name}</h3>
-        <p className="task__description">{task.description}</p>
-      </li>
-    );
-  };
+  // })
+
 
   return (
     <div className="App">
       <Container style={{ margin: 20 }}>
         <LoginForm></LoginForm>
       </Container>
-      <ul className="list">
-        {(tasks && tasks.length > 0) ? (
-          tasks.map(task => renderProduct(task))
-        ) : (
-          <p>No tasks found</p>
-        )}
-      </ul>
     </div>
   );
 }
