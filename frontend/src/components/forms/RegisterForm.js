@@ -2,9 +2,16 @@ import React, {Component} from 'react';
 import { Button, Form } from 'semantic-ui-react'
 
 class LoginForm extends Component{
+    state = {
+        user: '',
+        password: '',
+        passwordRepeat: '',
+        loading: false,
+        errors: {}
+    }
     render() {
         return (
-        <Form>
+        <Form >
             <h1>Register</h1>
             <Form.Field>
             <label>Usuario</label>
