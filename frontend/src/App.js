@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      <p style={{padding: "3%",backgroundColor: "darkslategray",color: "whitesmoke"}}>
+      <p style={{padding: "2%",backgroundColor: "darkslategray",color: "whitesmoke"}}>
         <h1>Tasklist</h1>
         <h3>La mejor forma de organizar tus tareas</h3>
       </p>
@@ -36,6 +36,7 @@ function App() {
           </Grid.Row>
         </Grid>
       </Container>
+
     </div>
   );
 }

@@ -11,8 +11,12 @@ export default {
       return err.response.data
     })
     ,
-  register: async () => {
-    let res = await axios.post(`/api/register`);
-    return res.data || [];
-  }
+  register: async (user,password) => 
+  await axios.post(`/api/register`,{user,password})
+    .then(res => {
+      return res.data || []
+    })
+    .catch(err => {
+      return err.response.data
+    })
 }

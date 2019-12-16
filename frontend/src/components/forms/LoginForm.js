@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Form, Button, Message } from 'semantic-ui-react';
 import InlineError from '../messages/InlineError';
 import AutenticationService from '../services/autenticationService';
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends Component{
     state = {
@@ -10,6 +11,7 @@ class LoginForm extends Component{
         loading: false,
         errors: {}
     }
+
 
     validate = (user, password) => {
         const errors = {};
@@ -31,7 +33,7 @@ class LoginForm extends Component{
     submit = async () =>{
         let res = await AutenticationService.login(this.state.user,this.state.password);
         if(!res.error){
-            localStorage.setItem('user', JSON.stringify(res.user));
+            this.props.history.push('/tareas');
             this.setState({ loading: false });
         }
         else{
@@ -65,7 +67,7 @@ class LoginForm extends Component{
                     <Message.Header>Something went wrong</Message.Header>
                     <p>{errors.global}</p>
                 </Message>}
-                <h1>Login</h1>
+                <h1>Inicia Sesion</h1>
                 <Form.Field>
                     <label>Usuario</label>
                     <input placeholder='jhon' 
@@ -79,6 +81,7 @@ class LoginForm extends Component{
                     <input placeholder='*****' 
                         value={password}
                         onChange={this.onChangePassword}
+                        type="password"
                     />
                 {errors.password && <InlineError text={errors.password}/>}
                 </Form.Field>
@@ -89,4 +92,4 @@ class LoginForm extends Component{
     }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
