@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 // SERVICES
 import taskService from '../services/taskService';
+import TaskCard from "../TaskCard";
 
 function Tareas() {
   const [tasks, settasks] = useState(null);
@@ -20,10 +21,11 @@ function Tareas() {
 
   const renderProduct = task => {
     return (
-      <li key={task._id} className="list__item task">
-        <h3 className="task__name">{task.name}</h3>
-        <p className="task__description">{task.description}</p>
-      </li>
+      // <li key={task._id} className="list__item task">
+      //   <h3 className="task__name">{task.name}</h3>
+      //   <p className="task__description">{task.description}</p>
+      // </li>
+      <TaskCard task={task}></TaskCard>
     );
   };
 
