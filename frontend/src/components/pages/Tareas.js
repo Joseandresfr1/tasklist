@@ -6,7 +6,10 @@ import taskService from '../services/taskService';
 import TaskCard from "../TaskCard";
 import { Grid,Button, Icon  } from 'semantic-ui-react'
 
+
+
 function Tareas() {
+  const [user, setUser] = useState(null);
   const [tasks, settasks] = useState(null);
   const [change,setChange] = useState(null);
 
@@ -15,16 +18,17 @@ function Tareas() {
     setChange(false);
   }
   useEffect(() => {
+    setUser(localStorage.getItem("user"));
     getTasks();
-  }, [change])
+  }, [change,user])
 
   const getTasks = async () => {
-    let res = await taskService.getAll();
+    let res = await taskService.getAll(user);
     settasks(res);
   }
 
   const addTasks = async () => {
-    let res = await taskService.add("Nueva Tarea", "Descripción");
+    let res = await taskService.add("Nueva Tarea", "Descripción",user);
     getTasks();
   }
 

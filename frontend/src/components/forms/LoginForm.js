@@ -33,8 +33,9 @@ class LoginForm extends Component{
     submit = async () =>{
         let res = await AutenticationService.login(this.state.user,this.state.password);
         if(!res.error){
-            this.props.history.push('/tareas');
+            localStorage.setItem("user",res.user[0].user)
             this.setState({ loading: false });
+            this.props.history.push('/tareas');
         }
         else{
             localStorage.clear();

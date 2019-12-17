@@ -2,13 +2,13 @@
 import axios from 'axios';
 
 export default {
-  getAll: async () => {
-    let res = await axios.get(`/api/task`);
+  getAll: async (user) => {
+    let res = await axios.get(`/api/task/` + user);
     return res.data || [];
   },
 
-  add: async (name,description) => {
-    let res = await axios.post('/api/task',{name,description});
+  add: async (name,description,user) => {
+    let res = await axios.post('/api/task',{name,description,user});
     return res.data || [];
   },
 

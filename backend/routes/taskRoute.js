@@ -9,6 +9,12 @@ module.exports = (app) => {
     return res.status(200).send(tasks);
   });
 
+  app.get(`/api/task/:user`, async (req, res) => {
+    const {user} = req.params;
+    const tasks = await Task.find({ user: user });
+    return res.status(200).send(tasks);
+  });
+
   app.post(`/api/task`, async (req, res) => {
     let task = await Task.create(req.body);
     return res.status(201).send({

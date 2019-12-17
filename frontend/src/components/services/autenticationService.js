@@ -12,7 +12,7 @@ export default {
     })
     ,
   register: async (user,password) => 
-  await axios.post(`/api/register`,{user,password})
+  await axios.post(`/api/register/` + user,{user,password})
     .then(res => {
       return res.data || []
     })
