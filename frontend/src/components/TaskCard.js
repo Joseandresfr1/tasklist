@@ -34,8 +34,6 @@ class TaskCard extends Component{
 
     render() {
         const task = this.state.task;
-        let modification = false;
-
         return (    
         <Card>
             <Card.Content>
@@ -50,7 +48,7 @@ class TaskCard extends Component{
                 <label>Completado</label>
             </div>                
             </Card.Content>
-            <Button style={{}} icon='save' floated='right' size='small' onClick={this.modifyTask}></Button>
+            <Button icon='save' floated='right' size='small' onClick={this.modifyTask}></Button>
             <Button style={{}} icon='trash' floated='right' size='small' onClick={this.deleteTask}></Button>
           </Card>
             
