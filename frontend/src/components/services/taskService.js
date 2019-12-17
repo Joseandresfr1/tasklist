@@ -14,12 +14,12 @@ export default {
 
   delete: async (id) => {
     console.log(id);
-    let res = await axios.delete("/api/task",{id});
+    let res = await axios.delete(`/api/task/` + id);
     return res.data || [];
   },
 
   modify: async (id) => {
-    let res = await axios.put('/api/task/'+ id);
+    let res = await axios.put(`/api/task/` + id);
     return res.data || [];
   }
 

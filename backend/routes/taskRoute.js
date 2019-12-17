@@ -17,8 +17,8 @@ module.exports = (app) => {
     })
   })
 
-  app.put(`/api/task`, async (req, res) => {
-    const {id} = req.body._id ;
+  app.put(`/api/task/:id`, async (req, res) => {
+    const {id} = req.params;
 
     let task = await Task.findByIdAndUpdate(id, req.body);
 
@@ -29,8 +29,8 @@ module.exports = (app) => {
 
   });
 
-  app.delete(`/api/task`, async (req, res) => {
-    const {id} = req.body._id ;
+  app.delete(`/api/task/:id`, async (req, res) => {
+    const {id} = req.params;
 
     let task = await Task.findByIdAndDelete(id);
 
