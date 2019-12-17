@@ -33,11 +33,11 @@ function Tareas() {
       //   <p className="task__description">{task.description}</p>
       // </li>
       <Grid columns={5} divided >
-          <Grid.Row>
+          
             <Grid.Column>
               <TaskCard task={task}></TaskCard>
             </Grid.Column>
-          </Grid.Row>
+          
       </Grid>
     );
   };
@@ -51,7 +51,7 @@ function Tareas() {
           <p>No tasks found</p>
         )}
       </ul>
-      <Button style={{position: "absolute", right: 0,bottom: "15%"}}circular icon='add circle' floated='right' size='massive' onClick={addTasks}></Button>
+      <Button style={{position: "fixed", right: 0,bottom: "15%"}}circular icon='add circle' floated='right' size='massive' onClick={addTasks}></Button>
     </div>
   );
 }

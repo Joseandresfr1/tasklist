@@ -31,7 +31,8 @@ class TaskCard extends Component{
     render() {
         const task = this.state.task;
         let modification = false;
-        return (
+
+        return (    
         <Card>
             <Card.Content>
             <Card.Header><Input placeholder={task.name} /></Card.Header>
@@ -43,11 +44,10 @@ class TaskCard extends Component{
             <div class="ui toggle checkbox">
                 <input type="checkbox" checked={task.completed}  onChange={!task.completed} readonly="" tabindex="0" />
                 <label>Completado</label>
-                </div>
-                
+            </div>                
             </Card.Content>
-            <Button style={{}}circular icon='save' floated='right' size='small' ></Button>
-            <Button style={{}}circular icon='trash' floated='right' size='small' onClick={this.deleteTask}></Button>
+            <Button style={{}} icon='save' floated='right' size='small' ></Button>
+            <Button style={{}} icon='trash' floated='right' size='small' onClick={this.deleteTask}></Button>
           </Card>
             
         )
