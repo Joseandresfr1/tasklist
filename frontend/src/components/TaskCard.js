@@ -25,7 +25,11 @@ class TaskCard extends Component{
       }
 
     modifyTask = async () => {
-        let res = await taskService.modify(this.state.task._id, this.state.task.name, this.state.task.description, this.state.task.completed);
+        const task = this.state.task;
+        task.name= document.getElementById("taskName").value;
+        task.description= document.getElementById("taskDescription").value;
+        task.completed= document.getElementById("taskCompleted").value;
+        let res = await taskService.modify(task._id,task.name,task.description,task.completed);
       }
 
     render() {
@@ -35,18 +39,18 @@ class TaskCard extends Component{
         return (    
         <Card>
             <Card.Content>
-            <Card.Header><Input placeholder={task.name} /></Card.Header>
+            <Card.Header><Input id="taskName" placeholder={task.name} /></Card.Header>
               <Card.Description>
-              <Input placeholder={task.description} />
+              <Input id="taskDescription" placeholder={task.description} />
               </Card.Description>
             </Card.Content>
             <Card.Content extra>
             <div class="ui toggle checkbox">
-                <input type="checkbox" checked={task.completed}  onChange={!task.completed} readonly="" tabindex="0" />
+                <input type="checkbox" id="taskCompleted" value={task.completed}  onChange={!task.completed} readonly="" tabindex="0" />
                 <label>Completado</label>
             </div>                
             </Card.Content>
-            <Button style={{}} icon='save' floated='right' size='small' ></Button>
+            <Button style={{}} icon='save' floated='right' size='small' onClick={this.modifyTask}></Button>
             <Button style={{}} icon='trash' floated='right' size='small' onClick={this.deleteTask}></Button>
           </Card>
             
