@@ -18,8 +18,8 @@ export default {
     return res.data || [];
   },
 
-  modify: async (id) => {
-    let res = await axios.put(`/api/task/` + id);
+  modify: async (id,name,description) => {
+    let res = await axios.put(`/api/task/` + id,{name,description});
     return res.data || [];
   }
 

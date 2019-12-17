@@ -8,12 +8,15 @@ import { Grid,Button, Icon  } from 'semantic-ui-react'
 
 function Tareas() {
   const [tasks, settasks] = useState(null);
+  const [change,setChange] = useState(null);
 
+  function changeState(value) {
+    setChange(value);
+    setChange(false);
+  }
   useEffect(() => {
-    if(!tasks) {
-      getTasks();
-    }
-  })
+    getTasks();
+  }, [change])
 
   const getTasks = async () => {
     let res = await taskService.getAll();
@@ -21,7 +24,6 @@ function Tareas() {
   }
 
   const addTasks = async () => {
-    console.log("Epale menol");
     let res = await taskService.add("Nueva Tarea", "Descripción");
     getTasks();
   }
@@ -35,7 +37,7 @@ function Tareas() {
       <Grid columns={5} divided >
           
             <Grid.Column>
-              <TaskCard task={task}></TaskCard>
+              <TaskCard task={task} reRender={changeState}></TaskCard>
             </Grid.Column>
           
       </Grid>
@@ -48,7 +50,7 @@ function Tareas() {
         {(tasks && tasks.length > 0) ? (
           tasks.map(task => renderProduct(task))
         ) : (
-          <p>No tasks found</p>
+          <p>No tienes tareas aun</p>
         )}
       </ul>
       <Button style={{position: "fixed", right: 0,bottom: "15%"}}circular icon='add circle' floated='right' size='massive' onClick={addTasks}></Button>
