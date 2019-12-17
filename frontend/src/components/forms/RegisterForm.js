@@ -20,7 +20,7 @@ class RegisterForm extends Component{
             errors.confirm = "Repite tu constraseña";
         }
         else {
-            if(password != confirm) errors.equalPassword = "Constraseñas diferentes";
+            if(password !== confirm) errors.equalPassword = "Constraseñas diferentes";
         }
         return errors;
     };
@@ -63,7 +63,7 @@ class RegisterForm extends Component{
     };
 
     render() {
-        const { user, password,confirm, errors, loading } = this.state;
+        const { user, password,confirm, errors } = this.state;
         return (
         <div>
             <div>

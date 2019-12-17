@@ -32,6 +32,9 @@ class TaskCard extends Component{
 
     deleteTask = async () => {
         let res = await taskService.delete(this.state.task._id);
+        if(res.error){
+            alert("Ha ocurrido un error");
+        }
         this.rerender();
     }
 
@@ -60,6 +63,9 @@ class TaskCard extends Component{
     modifyTask = async () => {
         const task = this.state.task;
         let res = await taskService.modify(task._id,task.name,task.description);
+        if(res.error){
+            alert("Ha ocurrido un error");
+        }
         this.setState({
             toggleEdit: !this.state.toggleEdit
         })
@@ -69,6 +75,9 @@ class TaskCard extends Component{
         const task = this.state.task;
         const completed = this.state.checked;
         let res = await taskService.modify(task._id,task.name,task.description,!completed);
+        if(res.error){
+            alert("Ha ocurrido un error");
+        }
         this.rerender();
     }
 

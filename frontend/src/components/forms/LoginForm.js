@@ -54,7 +54,7 @@ class LoginForm extends Component{
     };
 
     render() {
-        const { user, password, errors, loading } = this.state;
+        const { user, password, errors} = this.state;
         return (
         <div>
             <div>

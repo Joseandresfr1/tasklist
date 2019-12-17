@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 // SERVICES
 import taskService from '../services/taskService';
 import TaskCard from "../TaskCard";
-import { Grid,Button, Icon  } from 'semantic-ui-react'
+import { Grid,Button } from 'semantic-ui-react'
 
 
 
@@ -29,6 +29,9 @@ function Tareas() {
 
   const addTasks = async () => {
     let res = await taskService.add("Nueva Tarea", "Descripción",user);
+    if(res.error){
+      alert("Ha ocurrido un error");
+    }
     getTasks();
   }
 
