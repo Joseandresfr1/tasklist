@@ -3,19 +3,26 @@ import { Button, Input, Checkbox, Card } from 'semantic-ui-react'
 import taskService from './services/taskService';
 
 class TaskCard extends Component{
+    
     state = {
         toggleEdit: false,
+        checked: false,
         task:{
             _id:'',
             name:'',
             description:'',
-            completed:"false",
+            completed: false,
             user:''
         }
     }
+
+
     componentDidMount(){
         this.setState({
             task: this.props.task
+        })
+        this.setState({
+            checked: this.props.task.completed
         })
     }
 
@@ -34,16 +41,40 @@ class TaskCard extends Component{
         })
     }
 
+    onChangeDescription = e =>
+    {
+        const { task } = { ...this.state };
+        const currentState = task;
+        const {value} = e.target;
+        currentState.description = value;
+        this.setState({ task: currentState });
+    }
+    onChangeName = e =>
+    {
+        const { task } = { ...this.state };
+        const currentState = task;
+        const { value } = e.target;
+        currentState.name = value;
+        this.setState({ task: currentState });
+    }
     modifyTask = async () => {
         const task = this.state.task;
-        task.name= document.getElementById("taskName").value;
-        task.description= document.getElementById("taskDescription").value;
-        task.completed= document.getElementById("taskCompleted").value;
         let res = await taskService.modify(task._id,task.name,task.description);
         this.setState({
             toggleEdit: !this.state.toggleEdit
         })
         this.rerender();
+    }
+    modifyCompleted = async () => {
+        const task = this.state.task;
+        const completed = this.state.checked;
+        let res = await taskService.modify(task._id,task.name,task.description,!completed);
+        this.rerender();
+    }
+
+    toggle = () => {
+        this.setState((prevState) => ({ checked: !prevState.checked }))
+        this.modifyCompleted();
     }
 
     render() {
@@ -53,24 +84,34 @@ class TaskCard extends Component{
             <Card.Content>
             <Card.Header>
                 {this.state.toggleEdit?
-                <Input id="taskName" placeholder={task.name} />
+                <Input id="taskName" placeholder={task.name}  onChange={this.onChangeName.bind(this)} />
                 :
                 <label id="taskName" value={task.name} >{task.name}</label>
                 }
             </Card.Header>
             <Card.Description>
                 {this.state.toggleEdit?
-                <Input id="taskDescription" placeholder={task.description} />
+                <Input id="taskDescription" placeholder={task.description} onChange={this.onChangeDescription.bind(this)}/>
                 :
-                <label id="taskDescription" value={task.description}>{task.name}</label>
+                <label id="taskDescription" value={task.description}>{task.description}</label>
                 }
             </Card.Description>
             </Card.Content>
             <Card.Content extra>
-            <div class="ui toggle checkbox">
-                <input type="checkbox" id="taskCompleted" value={task.completed}  onChange={!task.completed} readonly="" tabindex="0" />
-                <label>Completado</label>
-            </div>                
+            {
+                this.state.checked ?
+                    <Checkbox toggle
+                        label='Completado'
+                        onChange={this.toggle}
+                        checked={this.state.checked}
+                    />
+                :
+                    <Checkbox toggle
+                        label='Incompleto'
+                        onChange={this.toggle}
+                        checked={this.state.checked}
+                    />
+            }             
             </Card.Content>
             
             {this.state.toggleEdit?
