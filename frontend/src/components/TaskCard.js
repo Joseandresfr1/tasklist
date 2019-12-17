@@ -49,7 +49,7 @@ class TaskCard extends Component{
             </div>                
             </Card.Content>
             <Button icon='save' floated='right' size='small' onClick={this.modifyTask}></Button>
-            <Button style={{}} icon='trash' floated='right' size='small' onClick={this.deleteTask}></Button>
+            <Button icon='trash' floated='right' size='small' onClick={this.deleteTask}></Button>
           </Card>
             
         )
