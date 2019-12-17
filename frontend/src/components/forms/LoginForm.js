@@ -70,7 +70,7 @@ class LoginForm extends Component{
                 <h1>Inicia Sesion</h1>
                 <Form.Field>
                     <label>Usuario</label>
-                    <input placeholder='jhon' 
+                    <input placeholder='Usuario' 
                         value={user}
                         onChange={this.onChangeUser}
                     />

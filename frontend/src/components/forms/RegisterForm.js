@@ -80,7 +80,7 @@ class RegisterForm extends Component{
                 <h1>Registrate</h1>
                 <Form.Field>
                     <label>Usuario</label>
-                    <input placeholder='jhon' 
+                    <input placeholder='Usuario' 
                         value={user}
                         onChange={this.onChangeUser}
                         autocomplete="off"
